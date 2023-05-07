@@ -8,9 +8,6 @@ import Header from "../Components/Header";
 import InputField from "../Components/InputField";
 import axios from "axios";
 
-//data
-import post from "../Data/Posts";
-
 //images
 import ProfilePic from "../assets/profile.png";
 
