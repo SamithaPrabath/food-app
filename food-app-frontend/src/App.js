@@ -16,6 +16,8 @@ function App() {
     password: window.localStorage.getItem("password") ? window.localStorage.getItem("useremail") : "",
     firstName: window.localStorage.getItem("firstname") ? window.localStorage.getItem("firstname") : "",
     lastName: window.localStorage.getItem("lastname") ? window.localStorage.getItem("lastname") : "",
+    address: window.localStorage.getItem("address") ? window.localStorage.getItem("userid") : "",
+    dob: window.localStorage.getItem("dob") ? window.localStorage.getItem("userid") : "",
     userid: window.localStorage.getItem("userid") ? window.localStorage.getItem("userid") : "",
   });
   

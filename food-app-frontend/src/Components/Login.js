@@ -16,32 +16,40 @@ function Login({ setUser }) {
   const onSubmitClick = (e) => {
     e.preventDefault();
 
-    setUser({ email: "venura@gmail.com", password: "123", firstName: "Venura", lastName: "Warnasooriya", userid: "abv" });
-    // window.localStorage.setItem("useremail", "email@gmail.com");
-
     axios
       .get(`http://localhost:8080/getUser/${email}`)
       .then((res) => {
-        if (res.data[0].password == password) {
-          setUser({
-            email: res.data[0].userName,
-            password: res.data[0].password,
-            firstName: res.data[0].fName,
-            lastName: res.data[0].lName,
-            userid: res.data[0].id,
-          });
-          window.localStorage.setItem("useremail", res.data[0].userName);
-          window.localStorage.setItem("password", res.data[0].password);
-          window.localStorage.setItem("firstname", res.data[0].fName);
-          window.localStorage.setItem("lastname", res.data[0].lName);
-          window.localStorage.setItem("userid", res.data[0].id);
-          
-          navigate("/");
-        } else {
-          setIsError(true);
-          setError("password dosen't match");
-          console.log("password dosen't match");
+        if(res.data.length>0){
+          if (res.data[0].password == password) {
+            setUser({
+              email: res.data[0].userName,
+              password: res.data[0].password,
+              firstName: res.data[0].fName,
+              lastName: res.data[0].lName,
+              userid: res.data[0].id,
+              address: res.data[0].address,
+              dob: res.data[0].dob,
+            });
+            window.localStorage.setItem("useremail", res.data[0].userName);
+            window.localStorage.setItem("password", res.data[0].password);
+            window.localStorage.setItem("firstname", res.data[0].fName);
+            window.localStorage.setItem("lastname", res.data[0].lName);
+            window.localStorage.setItem("userid", res.data[0].id);
+            window.localStorage.setItem("address", res.data[0].address);
+            window.localStorage.setItem("dob", res.data[0].dob);
+            
+            navigate("/");
+          } else {
+            setIsError(true);
+            setError("password dosen't match");
+            console.log("password dosen't match");
+          }
         }
+        else{
+          setIsError(true);
+          setError("Email didn't fount");
+        }
+        
       })
       .catch((err) => {
         console.log(err);
@@ -64,7 +72,7 @@ function Login({ setUser }) {
             <button type="submit" className="btn submit" onClick={(e) => onSubmitClick(e)}>
               Login
             </button>
-            <button type="reset" className="btn clear" >
+            <button type="reset" className="btn clear" onClick = {(e) => setIsError(false)}>
               Clear
             </button>
           </div>

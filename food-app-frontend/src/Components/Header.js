@@ -18,6 +18,8 @@ function Header({ user,setUser }) {
       firstName: null,
       lastName: null,
       userid: null,
+      address: null,
+      dob: null,
     });
     navigate("/");
   };

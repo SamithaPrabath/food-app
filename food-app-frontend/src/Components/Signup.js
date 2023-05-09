@@ -6,8 +6,6 @@ import axios from "axios";
 //components
 import InputField from "./InputField";
 
-//images
-import Google from "../assets/google.png";
 
 function Signup() {
   const navigate = useNavigate();
@@ -24,17 +22,33 @@ function Signup() {
 
   const onSubmitClick = (e) => {
     e.preventDefault();
-    
-    axios
+    if(
+      firstname != "" &&  
+      lastname !="" &&
+      password !="" &&
+      dob !="" &&
+      address !="" &&
+      confimePassword !="" &&
+      email !="" 
+    )
+    {
+      
+      axios
       .get(`http://localhost:8080/getUser/${email}`)
       .then((res) => {
-        console.log("cliked");
         res.data.length > 0 ? setAllReadyHave(true) : setAllReadyHave(false);
       })
       .catch((err) => {
         console.log(err);
       });
 
+    }
+    else{
+      console.log("hi");
+      setIsError(true);
+      setError("All feilds required");
+    }
+    
     
   };
 
@@ -104,7 +118,7 @@ function Signup() {
             <button type="submit" className="btn submit" onClick={(e) => onSubmitClick(e)}>
               Signup
             </button>
-            <button type="reset" className="btn clear">
+            <button type="reset" className="btn clear" onClick={(e) =>setError("")}>
               Clear
             </button>
           </div>

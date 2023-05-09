@@ -17,11 +17,11 @@ function Profile({ user,setUser }) {
   const [userDetailsfromAPI, setUserDetailsfromAPI] = useState({});
   const [editBtnClicked, setEditBtnClicked] = useState(false);
   const [deleteBtnClicked, setDeleteBtn] = useState(false);
-  const [onFirstNameChange, setOnFIrstNameChange] = useState("");
-  const [onLastNameChange, setOnLastNameChange] = useState("");
-  const [onAddressChange, setOnAddressChange] = useState("");
-  const [onDobChange, setOnDobChange] = useState("");
-  const [onPasswordChange, setOnPasswordChange] = useState("");
+  const [onFirstNameChange, setOnFIrstNameChange] = useState(user.firstName);
+  const [onLastNameChange, setOnLastNameChange] = useState(user.lastName);
+  const [onAddressChange, setOnAddressChange] = useState(user.address);
+  const [onDobChange, setOnDobChange] = useState(user.dob);
+  const [onPasswordChange, setOnPasswordChange] = useState(user.password);
 
   useEffect(() => {
     axios
@@ -43,6 +43,8 @@ function Profile({ user,setUser }) {
           firstName: res.data[0].fName,
           lastName: res.data[0].lName,
           userid: res.data[0].id,
+          address: res.data[0].address,
+          dob: res.data[0].dob,
         });
       })
       .catch((err) => {
@@ -80,7 +82,6 @@ function Profile({ user,setUser }) {
         dob: onDobChange,
       })
       .then((res) => {
-        console.log(user.email);
         setAllPost([]);
         setUserDetailsfromAPI({});
         setEditBtnClicked(false);
@@ -93,7 +94,7 @@ function Profile({ user,setUser }) {
   return (
     <Container>
       <div className="header">
-        <Header user={user} />
+        <Header user={user} setUser={setUser} />
       </div>
       <div className="contents">
         <div className="info-container">
