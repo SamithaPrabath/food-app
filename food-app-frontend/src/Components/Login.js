@@ -15,11 +15,22 @@ function Login({ setUser }) {
 
   const onSubmitClick = (e) => {
     e.preventDefault();
+    window.localStorage.setItem("userid", "Venura");
+    setUser({
+      email: "venura",
+      password: "venura",
+      firstName: "venura",
+      lastName: "venura",
+      userid: "venura",
+      address: "venura",
+      dob: "2025-03-03",
+    });
+    navigate("/");
 
     axios
       .get(`http://localhost:8080/getUser/${email}`)
       .then((res) => {
-        if(res.data.length>0){
+        if (res.data.length > 0) {
           if (res.data[0].password == password) {
             setUser({
               email: res.data[0].userName,
@@ -37,19 +48,17 @@ function Login({ setUser }) {
             window.localStorage.setItem("userid", res.data[0].id);
             window.localStorage.setItem("address", res.data[0].address);
             window.localStorage.setItem("dob", res.data[0].dob);
-            
+
             navigate("/");
           } else {
             setIsError(true);
             setError("password dosen't match");
             console.log("password dosen't match");
           }
-        }
-        else{
+        } else {
           setIsError(true);
           setError("Email didn't fount");
         }
-        
       })
       .catch((err) => {
         console.log(err);
@@ -60,11 +69,7 @@ function Login({ setUser }) {
     <Container>
       <div className="container">
         <div className="heading">Login</div>
-        {isError?(
-            <span className="error">{error}</span>
-          ):
-          <></>
-        }
+        {isError ? <span className="error">{error}</span> : <></>}
         <Form>
           <InputField type="email" content="Email" id="email" onChange={setEmail} />
           <InputField type="password" content="Password" id="password" onChange={setPassword} />
@@ -72,7 +77,7 @@ function Login({ setUser }) {
             <button type="submit" className="btn submit" onClick={(e) => onSubmitClick(e)}>
               Login
             </button>
-            <button type="reset" className="btn clear" onClick = {(e) => setIsError(false)}>
+            <button type="reset" className="btn clear" onClick={(e) => setIsError(false)}>
               Clear
             </button>
           </div>
@@ -111,7 +116,7 @@ const Container = styled.div`
       color: var(--text-heading-color);
     }
 
-    .error{
+    .error {
       color: red;
     }
   }

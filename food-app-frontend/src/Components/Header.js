@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Profile from "../assets/profile.png";
 import Logout from "../assets/logout.png";
 
-function Header({ user,setUser }) {
+function Header({ user, setUser }) {
   const navigate = useNavigate();
   const [profileClicked, setProfileClicked] = useState(false);
 
@@ -73,7 +73,8 @@ const Container = styled.div`
       border-radius: 12px;
 
       &:hover {
-        background-color: lightgray;
+        background-color: var(--background-color);
+        box-shadow: 0 0 2px 0 var(--box-shadow);
       }
     }
   }
@@ -90,7 +91,8 @@ const Container = styled.div`
     cursor: pointer;
 
     &:hover {
-      background-color: lightgray;
+      background-color: var(--background-color);
+      box-shadow: 0 0 2px 0 var(--box-shadow);
     }
 
     img {
@@ -103,7 +105,7 @@ const Container = styled.div`
     bottom: -110px;
     right: 50px;
     background-color: var(--post-background);
-    box-shadow: 0 0 5px 0 lightgray;
+    box-shadow: 0 0 5px 0 var(--box-shadow);
     transform-origin: top;
     transform: scaleY(0);
     transition: all 0.3s ease;
@@ -122,13 +124,13 @@ const Container = styled.div`
       column-gap: 20px;
 
       &:hover {
-        background-color: lightgray;
+        background-color: var(--background-color);
         cursor: pointer;
       }
     }
 
     .profile {
-      border-bottom: 1px solid lightgray;
+      border-bottom: 1px solid var(--box-shadow);
     }
 
     .logout {

@@ -55,12 +55,12 @@ function Post(props) {
   const [file, setFile] = useState(props.file);
   const [postDeleteClicked, setPostDeleteClicked] = useState(false);
   const [image, setImage] = useState("");
-  
+
   const post = props.post;
   const postID = post.id;
   const user_name = props.useId;
   const resturantName = post.resturantName;
-  
+
   const addComment = () => {
     const data = {
       user_name: user_name,
@@ -133,7 +133,7 @@ function Post(props) {
         resturantName: hotelName,
         time: Date.now(),
         description: desc,
-        image:image
+        image: image,
       })
       .then((res) => {
         setComments([]);
@@ -271,9 +271,8 @@ function Post(props) {
         },
       })
       .then((res) => {
-        setIsLiked(true)
-        setLikesCount(likesCount+1);
-        
+        setIsLiked(true);
+        setLikesCount(likesCount + 1);
       })
       .catch((err) => {
         console.log(err);
@@ -284,7 +283,7 @@ function Post(props) {
     axios
       .delete(`http://localhost:8080/removeLike/${user_id}/${post_id}`)
       .then((response) => {
-        setIsLiked(false)
+        setIsLiked(false);
         setLikesCount(0);
       })
       .catch((error) => {
@@ -322,29 +321,29 @@ function Post(props) {
               <div></div>
             </div>
             {user_name == post.userID ? (
-                <div className={`options ${optionsClicked ? "active" : ""}`}>
-                  <div
-                    className="item"
-                    onClick={() => {
-                      setPostEditClicked(true);
-                      setOptionsClicked(false);
-                    }}
-                  >
-                    Edit the Post
-                  </div>
-                  <div
-                    className="item"
-                    onClick={() => {
-                      setPostDeleteClicked(true);
-                      setOptionsClicked(false);
-                    }}
-                  >
-                    Delete the Post
-                  </div>
+              <div className={`options ${optionsClicked ? "active" : ""}`}>
+                <div
+                  className="item"
+                  onClick={() => {
+                    setPostEditClicked(true);
+                    setOptionsClicked(false);
+                  }}
+                >
+                  Edit the Post
                 </div>
-                ) : (
-                  <></>
-                )}
+                <div
+                  className="item"
+                  onClick={() => {
+                    setPostDeleteClicked(true);
+                    setOptionsClicked(false);
+                  }}
+                >
+                  Delete the Post
+                </div>
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
           {!postEditClicked ? (
             <>
@@ -690,9 +689,11 @@ const Container = styled.div`
   background-color: var(--post-background);
   z-index: 0;
   overflow: hidden;
-  box-shadow: 0 2px 5px 0px lightgray;
+  box-shadow: 0 0 5px 0 var(--box-shadow);
   position: relative;
   z-index: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
 
   .profile-container {
     padding-inline: 20px;
@@ -707,7 +708,7 @@ const Container = styled.div`
       position: absolute;
       right: 20px;
       bottom: -110px;
-      box-shadow: 0 2px 5px 0px lightgray;
+      box-shadow: 0 0 5px 0 var(--box-shadow);
       transform-origin: top;
       transform: scaleY(0);
       transition: all 0.3s ease;
@@ -794,7 +795,7 @@ const Container = styled.div`
     padding-bottom: 10px;
     padding-inline: 20px;
     align-items: center;
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid var(--box-shadow);
 
     .like,
     .comment {
@@ -810,7 +811,7 @@ const Container = styled.div`
 
   .like-comment-section {
     display: flex;
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid var(--box-shadow);
 
     .btn {
       font-size: 0.8rem;
@@ -1091,7 +1092,7 @@ const Ratings = styled.div`
     max-height: 600px;
     background-color: var(--post-background);
     padding: 20px;
-    box-shadow: 0 2px 5px 0px lightgray;
+    box-shadow: 0 0 5px 0 var(--box-shadow);
     position: relative;
     padding-top: 40px;
     border-radius: 20px;
