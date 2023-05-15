@@ -11,7 +11,7 @@ import axios from "axios";
 //images
 import ProfilePic from "../assets/profile.png";
 
-function Profile({ user,setUser }) {
+function Profile({ user, setUser }) {
   const navigate = useNavigate();
   const [allPost, setAllPost] = useState([]);
   const [userDetailsfromAPI, setUserDetailsfromAPI] = useState({});
@@ -188,7 +188,7 @@ const Container = styled.div`
     height: 100%;
     background-color: var(--post-background);
     top: 0;
-    box-shadow: 0 2px 5px 0px lightgray;
+    box-shadow: 0 0px 5px 0px var(--box-shadow);
   }
 
   .contents {
@@ -219,8 +219,9 @@ const Container = styled.div`
       width: 100%;
       height: max-content;
       background-color: var(--post-background);
-      box-shadow: 0 2px 5px 0px lightgray;
+      box-shadow: 0 0px 5px 0px var(--box-shadow);
       padding: 20px 30px;
+      margin-bottom: 20px;
 
       .heading {
         font-size: 1.4rem;

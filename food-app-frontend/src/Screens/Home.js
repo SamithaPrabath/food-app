@@ -7,7 +7,7 @@ import Header from "../Components/Header";
 import InputField from "../Components/InputField";
 import axios from "axios";
 
-function Home({ user,setUser }) {
+function Home({ user, setUser }) {
   const [hotelname, setHotelname] = useState("");
   const [desc, setDesc] = useState("");
   const [image, setImage] = useState("");
@@ -67,12 +67,13 @@ function Home({ user,setUser }) {
   return (
     <Container>
       <div className="header">
-        <Header user={user} setUser={setUser}/>
+        <Header user={user} setUser={setUser} />
       </div>
       <div className="contents">
         <div className="posts-container">
+          <Post post={"post"} useId={"userID"} file={"testfile.png"} />
           {allPost.map((post) => (
-            <Post post={post} useId={userID} file={"testfile.png"}/>
+            <Post post={post} useId={userID} file={"testfile.png"} />
           ))}
         </div>
         <div className="add-post-container">
@@ -111,7 +112,7 @@ const Container = styled.div`
     height: 100%;
     background-color: var(--post-background);
     top: 0;
-    box-shadow: 0 2px 5px 0px lightgray;
+    box-shadow: 0 0px 5px 0px var(--box-shadow);
   }
 
   .contents {
@@ -139,8 +140,9 @@ const Container = styled.div`
       width: 100%;
       height: max-content;
       background-color: var(--post-background);
-      box-shadow: 0 2px 5px 0px lightgray;
+      box-shadow: 0 0px 5px 0px var(--box-shadow);
       padding: 20px 30px;
+      margin-bottom: 20px;
       z-index: 10;
 
       .form {
