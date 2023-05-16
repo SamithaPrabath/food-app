@@ -15,18 +15,6 @@ function Login({ setUser }) {
 
   const onSubmitClick = (e) => {
     e.preventDefault();
-    window.localStorage.setItem("userid", "Venura");
-    setUser({
-      email: "venura",
-      password: "venura",
-      firstName: "venura",
-      lastName: "venura",
-      userid: "venura",
-      address: "venura",
-      dob: "2025-03-03",
-    });
-    navigate("/");
-
     axios
       .get(`http://localhost:8080/getUser/${email}`)
       .then((res) => {
