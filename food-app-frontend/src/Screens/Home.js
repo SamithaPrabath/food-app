@@ -71,7 +71,6 @@ function Home({ user, setUser }) {
       </div>
       <div className="contents">
         <div className="posts-container">
-          <Post post={"post"} useId={"userID"} file={"testfile.png"} />
           {allPost.map((post) => (
             <Post post={post} useId={userID} file={"testfile.png"} />
           ))}
